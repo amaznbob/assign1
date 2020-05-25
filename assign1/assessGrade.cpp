@@ -11,58 +11,39 @@
 int assessGrade(char letterGrade[])
 {
 	char* input = letterGrade;
+	char buffer[30] = { *letterGrade};
+	char grade[20];
+	double percent = 0.0;
+	int age;
+	
+	
 
 
 	char twoVal[] = { "" };
 	int n = 0;
 	char plus[] = { '+' };
-	double grade = 0.0;
+	
 	int retCode = SUCCESS;
 
 
 
-	if (letterGrade == "F")
+	if (sscanf(buffer, "%s", grade == "A")) 
 	{
-		grade = 50.00;
-		printf("%lf", grade);
+		percent = 95.00;
+		
 
 	}
-	else if (input == "D")
+	else if (sscanf(buffer, "%s", grade == "B"))
 	{
-		return grade = 57.00;
-	}
-	else if (input == "C")
-	{
-		return grade = 52.00;
-	}
-	else if (input == "C+")
-	{
-		return grade = 67.00;
-
-	}
-	else if (input == "B")
-	{
-		return grade = 72.00;
-
-	}
-	else if (input == "B+")
-	{
-		return grade = 77.00;
-	}
-	else if (input == "A")
-	{
-		return grade = 85.00;
-	}
-	else if (input == "A+")
-	{
-		return grade = 95.00;
+		percent = 72.00;
+		printf("%lf", percent);
 	}
 	else
 	{
 		retCode = FAILURE;
 	}
 
-	
+	return percent;
 
 }
 	
@@ -104,27 +85,20 @@ int assessGrade(double finalMark)
 
 int assessGrade(int assignMarks[])
 {
-	int* stream = assignMarks;
-	int i = 0;
-	int retCode = SUCCESS;
-	
-	
-		int totalMarks = 500;
-		double percentage = 20.0;
-		
-		int value = 0;
-		int size = 0;
-	
-		double sum = 0.0;
-
-		scanf("%d",&assignMarks);
-		
-			
-		return *assignMarks;
-
-			
-		
+	return 0;
 }
+
+
+int assessGrade(int assignMarks)
+{
+	int sum = 0;
+	int num = assignMarks;
+	sum = sum + assignMarks;
+	return sum;
+
+}
+
+
 
 void parseInput(char input[])
 {
@@ -158,4 +132,21 @@ void validCheck(int lastRetCode)
 void disp(int values)
 {
 	printf("%d ", values);
+}
+
+int parseString(char* line, char*** argv) {
+
+	char* buffer;
+	int argc;
+
+	buffer = (char*)malloc(strlen(line) * sizeof(char));
+	strcpy(buffer, line);
+	(*argv) = (char**)malloc(MAX_TOKS * sizeof(char**));
+
+	argc = 0;
+	(*argv)[argc++] = strtok(buffer, DELIMITERS);
+	while ((((*argv)[argc] = strtok(NULL, DELIMITERS)) != NULL) &&
+		(argc < MAX_TOKS)) ++argc;
+
+	return argc;
 }
