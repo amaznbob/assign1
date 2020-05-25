@@ -99,17 +99,41 @@ int main(void)
         {
 
             int num = atoi(value);
+            const char* lineConst = " \"+\" "; // the "input string"
+            char line[256];  // where we will put a copy of the input
+            char* subString; // the "result"
+
+            strcpy(line, lineConst);
+
+            subString = strtok(line, "\""); // find the first double quote
+            subString = strtok(NULL, "\"");   // find the second double quote
+
+            printf("the thing in between quotes is '%s'\n", subString);
 
             printf("string value is %s: \n", value);
-            printf("int value is %d: \n", *value);
+            printf("int value is %d: \n", *value + *subString);
+            if (*value + *subString == 108)
+            {
+                printf("95.00 is a pass condition"); //if the string value is A+ then return %95 
+            }
             if (*value == 65)
             {
-                printf("85.00 is a pass condition"); //if the string value is A then return %95 
+                printf("85.00 is a pass condition"); //if the string value is A then return %85 
             }
+            else if (*value + *subString == 109)
+            {
+                printf("77.00 is a pass condition");
+            }
+            
             else if (*value == 66)
             {
                 printf("72.00 is a pass condition");
             }
+            else if (*value + *subString == 110)
+            {
+                printf("67.00 is a pass condition");
+            }
+
             else if (*value == 66)
             {
                 printf("62.00 is a pass condition");
