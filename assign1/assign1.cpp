@@ -49,7 +49,7 @@ int main(void)
             n = (int)temp; // typecast to int. 
             if (fabs(temp - n) / temp > val)
             {
-                assessGrade(temp);//call function 
+                assessGrade(temp);//call overloaded function assessGrade(finalMark)
                 if (temp < 54.50)
                 {
                     printf("%s is a fail condition\n", value);
@@ -70,7 +70,7 @@ int main(void)
                 
                 for (i = 0; i < n; ++i)
                 {
-                    assessGrade(atoi(A[i]));
+                    assessGrade(atoi(A[i])); //call overloaded function assessGrade(assignMarks[])
                     int num = atoi(A[i]);
                     sum = sum + num;
 
@@ -88,8 +88,6 @@ int main(void)
                     printf("%d is a pass condition\n", percentage);
                 }
 
-                
-                
             }
 
         }
@@ -97,61 +95,10 @@ int main(void)
         // Check for string  
         else if (sscanf(value, "%s", str) == 1)
         {
-
-            int num = atoi(value);
-            const char* lineConst = " \"+\" "; // the "input string"
-            char line[256];  // where we will put a copy of the input
-            char* subString; // the "result"
-
-            strcpy(line, lineConst);
-
-            subString = strtok(line, "\""); // find the first double quote
-            subString = strtok(NULL, "\"");   // find the second double quote
-
-            printf("the thing in between quotes is '%s'\n", subString);
-
-            printf("string value is %s: \n", value);
-            printf("int value is %d: \n", *value + *subString);
-            if (*value + *subString == 108)
-            {
-                printf("95.00 is a pass condition"); //if the string value is A+ then return %95 
-            }
-            if (*value == 65)
-            {
-                printf("85.00 is a pass condition"); //if the string value is A then return %85 
-            }
-            else if (*value + *subString == 109)
-            {
-                printf("77.00 is a pass condition");
-            }
             
-            else if (*value == 66)
-            {
-                printf("72.00 is a pass condition");
-            }
-            else if (*value + *subString == 110)
-            {
-                printf("67.00 is a pass condition");
-            }
-
-            else if (*value == 66)
-            {
-                printf("62.00 is a pass condition");
-            }
-            else if (*value == 67)
-            {
-                printf("57.00 is a pass condition");
-            }
-            else if (*value == 68)
-            {
-                printf("50.00 is a fail condition");
-            }
-
-            
-
-
+            assessGrade(value); //call overloaded function assessGrades(letterGrade)
+            printf("%d", *value);
         }
-    
 
         else // No match.     
             printf("input not recognized\n");

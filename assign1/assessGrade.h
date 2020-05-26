@@ -21,9 +21,6 @@
 int assessGrade(char letterGrade[]);
 int assessGrade(double finalMark);
 int assessGrade(int assignMarks[]);
-void parseInput(char input[]);
 void clearCR(char* buf);
-void validCheck(int lastRetCode);
-void disp(int values);
 int parseString(char* line, char*** argv);
 
