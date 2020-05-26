@@ -10,65 +10,81 @@
 
 int assessGrade(char letterGrade[])
 {
-	char* input = letterGrade;
+	char str[MAX_INPUT] = "";
+
+	int APlus = 108;
+	int num[] = { atoi(letterGrade) };
+	printf("%s", *num);
+	const char* lineConst = " \"+\" "; // the "input string"
+	char line[256];  // where we will put a copy of the input
+	char* subString; // the "result"
+
+	strcpy(line, lineConst);
+
+	subString = strtok(line, "\""); // find the first double quote
+	subString = strtok(NULL, "\"");   // find the second double quote
+
+	printf("the thing in between quotes is '%s'\n", subString);
+
+	printf("string value is %s: \n", letterGrade);
+	printf("string value of substring is %s: \n", subString);
+	printf("int value is %d: \n", *letterGrade);
+	printf("int value with plus is %d: \n", *letterGrade + *subString);
 
 
-	char twoVal[] = { "" };
-	int n = 0;
-	char plus[] = { '+' };
-	double grade = 0.0;
-	int retCode = SUCCESS;
+	int plus = *letterGrade + *subString;
 
 
 
-	if (letterGrade == "F")
+	if (*letterGrade == 65)
 	{
-		grade = 50.00;
-		printf("%lf", grade);
+		printf("85.00 is a pass condition"); //if the string value is A then return %85
+		return (*letterGrade);
 
 	}
-	else if (input == "D")
+	else if (*letterGrade == 108)
 	{
-		return grade = 57.00;
+		printf("95.00 is a pass condition"); //if the string value is A+ then return %95 
+		return (*letterGrade + *subString);
 	}
-	else if (input == "C")
+	else if (*letterGrade == 66)
 	{
-		return grade = 52.00;
+		printf("72.00 is a pass condition");
+		return (*letterGrade);
 	}
-	else if (input == "C+")
+	else if (*letterGrade == 67)
 	{
-		return grade = 67.00;
-
+		printf("62.00 is a pass condition");
+		return (*letterGrade);
 	}
-	else if (input == "B")
+	else if (*letterGrade == 68)
 	{
-		return grade = 72.00;
-
+		printf("57.00 is a pass condition");
+		return (*letterGrade);
 	}
-	else if (input == "B+")
+	else if (*letterGrade == 70)
 	{
-		return grade = 77.00;
-	}
-	else if (input == "A")
-	{
-		return grade = 85.00;
-	}
-	else if (input == "A+")
-	{
-		return grade = 95.00;
-	}
-	else
-	{
-		retCode = FAILURE;
+		printf("50.00 is a fail condition");
+		return (*letterGrade);
 	}
 
-	
+
+	else if (*letterGrade + *subString == 109)
+	{
+		printf("77.00 is a pass condition");
+		return (*letterGrade + *subString);
+	}
+
+
+	else if (*letterGrade + *subString == 110)
+	{
+		printf("67.00 is a pass condition");
+		return (*letterGrade + *subString);
+	}
 
 }
-	
-	
-	
-	
+
+
 
 
 int assessGrade(double finalMark)
@@ -104,34 +120,19 @@ int assessGrade(double finalMark)
 
 int assessGrade(int assignMarks[])
 {
-	int* stream = assignMarks;
-	int i = 0;
-	int retCode = SUCCESS;
-	
-	
-		int totalMarks = 500;
-		double percentage = 20.0;
-		
-		int value = 0;
-		int size = 0;
-	
-		double sum = 0.0;
-
-		scanf("%d",&assignMarks);
-		
-			
-		return *assignMarks;
-
-			
-		
+	return 0;
 }
 
-void parseInput(char input[])
+
+int assessGrade(int assignMarks)
 {
-	char* decimalCheck = strchr(input, '.');
-	int numberCheck = isdigit(input[0]);
-	clearCR(input);
+	int sum = 0;
+	int num = assignMarks;
+	sum = sum + assignMarks;
+	return sum;
+
 }
+
 
 void clearCR(char* buf)
 {
@@ -142,20 +143,20 @@ void clearCR(char* buf)
 	}
 }
 
-void validCheck(int lastRetCode)
-{
-	if (lastRetCode == SUCCESS)
-	{
-		
-		printf("Input is a valid  %d\n", lastRetCode);
-	}
-	else
-	{
-		printf("  >> *** ERROR : Sorry, there was an error in the input\n");
-	}
-}
 
-void disp(int values)
-{
-	printf("%d ", values);
+int parseString(char* line, char*** argv) {
+
+	char* buffer;
+	int argc;
+
+	buffer = (char*)malloc(strlen(line) * sizeof(char));
+	strcpy(buffer, line);
+	(*argv) = (char**)malloc(MAX_TOKS * sizeof(char**));
+
+	argc = 0;
+	(*argv)[argc++] = strtok(buffer, DELIMITERS);
+	while ((((*argv)[argc] = strtok(NULL, DELIMITERS)) != NULL) &&
+		(argc < MAX_TOKS)) ++argc;
+
+	return argc;
 }

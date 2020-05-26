@@ -14,6 +14,7 @@
 
 int main(void)
 {
+
     int myArr[5] = { 0 };
     char exit[] = "x";
     // To read input 
@@ -26,7 +27,10 @@ int main(void)
     // To store integral value of input 
     int i;
     int n;
-    double sum = 0.0;
+    int len;
+    int sum = 0;
+    
+    int valid = false;
 
     // To store string value of input 
     char str[MAX_INPUT] = "";
@@ -38,56 +42,67 @@ int main(void)
         puts("Enter either a numerical grade, a floating point number, or an array of 5 integers");
         fgets(value, 100, stdin); // Read input 
 
+
         // Check for integers. 
         if (sscanf(value, "%lf", &temp) == 1)
         {
             n = (int)temp; // typecast to int. 
             if (fabs(temp - n) / temp > val)
             {
-                assessGrade(temp);
+                assessGrade(temp);//call overloaded function assessGrade(finalMark)
                 if (temp < 54.50)
                 {
-                    printf("%s is a fail", value);
+                    printf("%s is a fail condition\n", value);
                 }
                 else if (temp > 54.50)
                 {
-                    printf("%s is a pass", value);
+                    printf("%s is a pass condition\n", value);
                 }
+
             }
-
-            
-
-        else if (sscanf(value, "%i%n", &i, &n) == 1)
+            else if (sscanf(value, "%i%n", &i, &n) == 1) //if the values are a bunch of integers
             {
+
+                char** A;
+
+                /* split the input line into separate integers */
+                n = parseString(value, &A);
                 
-                char str[] = { *myArr };
-                int size = strlen(str);
-                char delim[] = " ";
-                char* ptr = strtok(str, delim);
-                assessGrade(value);
-                puts("Displaying values ");
-               
-                printf("%d\n", *ptr);
+                for (i = 0; i < n; ++i)
+                {
+                    assessGrade(atoi(A[i])); //call overloaded function assessGrade(assignMarks[])
+                    int num = atoi(A[i]);
+                    sum = sum + num;
+
+                }
                 
-                    
+                double percentage = 0;
+                percentage = ((double)sum / 500) * 100;
+                printf("%lf", percentage);
+                if (percentage < 54)
+                {
+                    printf("%d is a fail condition\n", percentage);
+                }
+                else if (percentage > 54)
+                {
+                    printf("%d is a pass condition\n", percentage);
+                }
 
             }
-
 
         }
+
         // Check for string  
         else if (sscanf(value, "%s", str) == 1)
         {
-
-            assessGrade(value);
-            printf("string value is %s: \n", value);
-            printf("float value is %lf", value);
-
-
+            
+            assessGrade(value); //call overloaded function assessGrades(letterGrade)
+            printf("%d", *value);
         }
 
         else // No match.     
             printf("input not recognized\n");
+
     }
 
     return 0;
